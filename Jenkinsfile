@@ -28,7 +28,6 @@ pipeline {
         stage('CodeQL scan') {
             environment {
                 GITHUB_TOKEN = credentials('github-token')
-                GIT_COMMIT = "${env.GIT_COMMIT}"
             }
             tools {
                 codeql 'codeql-2.18.2'
