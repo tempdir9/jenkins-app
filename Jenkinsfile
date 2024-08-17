@@ -33,12 +33,10 @@ pipeline {
                 codeql 'codeql-2.18.2'
             }
             steps {
-                sh 'printenv'
                 sh 'rm -rf codeql && mkdir codeql'
                 sh "codeql database create codeql/project-database --language=java --command='./gradlew --no-daemon --no-build-cache clean build'"
                 sh 'codeql database analyze codeql/project-database --format=sarif-latest --sarif-category=java --output=codeql/scan-result.sarif'
                 sh "codeql github upload-results --repository=tempdir9/jenkins-app --ref=refs/heads/${params.BRANCH_NAME} --commit=${env.GIT_COMMIT} --sarif=codeql/scan-result.sarif"
-                sh 'ls -lR codeql'
             }
         }
         stage('Create Jar') {
