@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'printenv'
                 sh "./gradlew clean build"
 			}
         }
