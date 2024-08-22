@@ -15,12 +15,10 @@ import java.util.List;
 public class HomeController {
 
     private static final Logger LOG = LoggerFactory.getLogger(HomeController.class.getName());
-    @Autowired MeterRegistry meterRegistry;
 
     @GetMapping("hello/{name}")
     public String sayHelloTo(@PathVariable String name) {
         LOG.info(String.format("Saying hello to %s!", name));
-        meterRegistry.counter("hello").increment();
         return String.format("Hello %s!", name);
     }
 
