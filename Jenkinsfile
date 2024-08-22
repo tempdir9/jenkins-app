@@ -2,6 +2,7 @@ pipeline {
     agent any
     parameters {
         string(defaultValue: 'main', name: 'BRANCH_NAME',trim: true)
+        booleanParam(defaultValue: false, name: 'RUN_CODE_QL_SCAN')
     }
     stages {
         stage('Clone from git') {
@@ -32,6 +33,11 @@ pipeline {
             }
         }
         stage('CodeQL scan') {
+            when {
+                expression {
+                    return params.RUN_CODE_QL_SCAN
+                }
+            }
             environment {
                 GITHUB_TOKEN = credentials('github-token')
             }
