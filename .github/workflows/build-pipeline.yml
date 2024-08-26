@@ -9,4 +9,4 @@ jobs:
     
     steps:
       - name: Audit
-        run: echo "java -version"
+        run: java -version
