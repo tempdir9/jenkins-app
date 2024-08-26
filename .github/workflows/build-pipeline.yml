@@ -16,6 +16,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Build App
         run: ./gradlew clean build
+  
+  code-ql-scan:
+    runs-on: ubuntu-latest
+    container:
+      image: openjdk:21-jdk-oracle
+    steps:
+      - name: Set up CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: 'java'
+
+      - name: Build App
+        run: ./gradlew clean build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+      
