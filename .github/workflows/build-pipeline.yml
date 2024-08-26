@@ -8,5 +8,11 @@ jobs:
       image: openjdk:21-jdk-oracle
     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
       - name: Audit
         run: java -version
+
+      - name: Build App
+        run: ./gradlew clean build
