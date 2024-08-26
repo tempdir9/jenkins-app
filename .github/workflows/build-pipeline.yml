@@ -3,12 +3,12 @@ on: workflow_dispatch
 jobs:
   version:
     runs-on: ubuntu-latest
+    container:
+      image: openjdk:21-jdk-oracle
     steps:
       - name: Audit
         run: java -version
-    
-
-  checkout:
+  build:
     runs-on: ubuntu-latest
     container:
       image: openjdk:21-jdk-oracle
@@ -16,9 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-  build:
-    runs-on: ubuntu-latest
-    needs: [checkout]
-    steps:
+      
       - name: Build App
         run: ./gradlew clean build
