@@ -1,12 +1,11 @@
-on:
-  push
+on: workflow_dispatch
 
 jobs:
   version:
     runs-on: ubuntu-latest
     
     container:
-      image: openjdk:21-slim
+      image: openjdk:21-jdk-oracle
     
     steps:
       - name: Audit
