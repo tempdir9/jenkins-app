@@ -24,14 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: openjdk:21-jdk-oracle
+    needs: [build]
     steps:
       - name: Set up CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: 'java'
 
-      - name: Build App
-        run: ./gradlew clean build
+      # - name: Build App
+      #   run: ./gradlew clean build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
