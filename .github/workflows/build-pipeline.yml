@@ -1,0 +1,13 @@
+on:
+  push
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: openjdk:21-slim
+    
+    steps:
+      - name: Audit
+        run: echo "java -version"
